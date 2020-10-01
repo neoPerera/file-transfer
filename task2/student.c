@@ -21,7 +21,7 @@
 
 void receiveFile(int socket,  char name123[])
 {
-    printf("+++%s+++", name123);
+    printf("++++++%s++++++", name123);
     char name13[50];
     strcpy(name13, name123);
 

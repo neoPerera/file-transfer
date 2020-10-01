@@ -20,7 +20,7 @@
 // function to share the file
 void sendFile(int socket , char name123[])
 {
-    printf("+++%s+++", name123);
+    printf("+++++++%s+++++++", name123);
     char name13[50];
     strcpy(name13, name123);
 
@@ -37,10 +37,10 @@ void sendFile(int socket , char name123[])
     memset(&overVariable, 0, sizeof(overVariable));
 
     file1 = fopen(name13, "r");
-    printf("Getting  Size\n");   
+    printf("Getting the Size\n");   
 
     if(file1 == NULL) {
-        printf("Error Opening file2 File");
+        printf("Error! cannot open file1");
     } 
 
     fseek(file1, 0, SEEK_END);
@@ -56,7 +56,7 @@ void sendFile(int socket , char name123[])
     write(socket, (void *)&size, sizeof(int));
 
     if(read_size = read(socket, &verify , sizeof(char)) < 0) {
-        puts("\nError Receiving Verification");
+        puts("\nError! Receiving Verification");
     }
 
 
@@ -84,7 +84,7 @@ void sendFile(int socket , char name123[])
             while(read(socket, &verify , sizeof(char)) < 0);
 
                 if(verify != '1') {
-                    printf("Error Receiving the Handshake signal\n %s",&verify);
+                    printf("Error! Receiving the Handshake signal\n %s",&verify);
                 }
 
             verify = NULL;
@@ -117,7 +117,7 @@ void sendFile(int socket , char name123[])
 
                 if(verify != '1') 
                 {
-                    printf("Error Receiving the Handshake signal\n %s",&verify);
+                    printf("Error! Receiving the Handshake signal\n %s",&verify);
                 }
 
             verify = NULL;
@@ -129,7 +129,7 @@ void sendFile(int socket , char name123[])
         if(feof(file1))
         {
             write(socket, &overVariable, sizeof(overVariable));
-            printf("\n sending done !\n");
+            printf("\n Sending done !\n");
         }
         
     }
@@ -139,7 +139,7 @@ void sendFile(int socket , char name123[])
 
 void receiveFile(int socket,  char name123[])
 {
-    printf("+++%s+++", name123);
+    printf("++++++%s++++++", name123);
     char name13[50];
     strcpy(name13, name123);
 
@@ -160,7 +160,7 @@ void receiveFile(int socket,  char name123[])
     //Make sure that the size is bigger than 0
     if(size <= 0 )
     {
-        printf("Error has occurred. Size less than or equal to 0\n");
+        printf("Error has occurred!. Size less than or equal to 0\n");
         return;
     }
   
@@ -169,7 +169,7 @@ void receiveFile(int socket,  char name123[])
     file2 = fopen(name13, "w");
 
     if( file2 == NULL) {
-        printf("Error has occurred.  file could not be opened\n");
+        printf("Error has occurred!  file could not be opened\n");
         return;
     }
  
